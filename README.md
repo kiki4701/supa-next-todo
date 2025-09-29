@@ -24,3 +24,4 @@ npx supabase gen types typescript --project-id "ltsrrjajvuihlqoaexum" --schema p
 1. Google Cloud API Oauth 세팅
 2. Auth UI 관련 작업
 3. Callback 처리 (PKCE)
+

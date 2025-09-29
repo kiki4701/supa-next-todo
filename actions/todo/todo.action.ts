@@ -56,22 +56,14 @@ export const getTodosBySearch = async (terms: string) => {
   return result.data;
 };
 
-type TodoRow = Tables<"todos_with_rls">;
-type TodoInsert = TablesInsert<"todos_with_rls">;
-
 // todoList 생성하기
 export const createTodos = async (content: string) => {
-  // const supabase = await createServerSideClient ();
-  const supabase = createServerSideClient();
-
-  const payload: TodoInsert = { content }; // Insert 타입 확정
+  const supabase = await createServerSideClient();
 
   const { data, error } = await supabase
-    .from<"public", "todos_with_rls">("todos_with_rls")
-    .insert([{ content } as TablesInsert<"todos_with_rls">])
-    .select()
-    .returns<Tables<"todos_with_rls">[]>()
-    .single();
+    .from("todos_with_rls")
+    .insert([{ content }])
+    .select();
 
   if (error) throw error;
   return data;
